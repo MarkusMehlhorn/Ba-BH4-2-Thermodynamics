@@ -1,0 +1,5 @@
+submit directory: /home/mehlhorn/Ba(BH4)2/convergence/ecut/120.0
+job ID: 48254
+node: chromium03
+number of CPUs: 24
+scratch directory: /local/scratch/mehlhorn/48254

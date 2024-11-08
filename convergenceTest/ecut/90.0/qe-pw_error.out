@@ -1,0 +1,10 @@
+--------------------------------------------------------------------------
+WARNING: An invalid value was given for btl_tcp_if_exclude.  This
+value will be ignored.
+
+  Local host: cuda8
+  Value:      "wg0 lo"
+  Message:    Invalid specification (missing "/")
+--------------------------------------------------------------------------
+[cuda8:621187] 23 more processes have sent help message help-mpi-btl-tcp.txt / invalid if_inexclude
+[cuda8:621187] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages

@@ -1,0 +1,5 @@
+submit directory: /home/mehlhorn/Ba(BH4)2/InitGeomOpt/tr2_ph-sym/calc2
+job ID: 53295
+node: cuda1
+number of CPUs: 24
+scratch directory: /local/scratch/mehlhorn/53295

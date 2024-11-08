@@ -1,0 +1,5 @@
+submit directory: /home/mehlhorn/Ba(BH4)2/varVol_tr2/0.97
+job ID: 53371
+node: cuda7
+number of CPUs: 24
+scratch directory: /local/scratch/mehlhorn/53371

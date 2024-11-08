@@ -1,0 +1,5 @@
+submit directory: /home/mehlhorn/Ba(BH4)2/convergence/k-grid/4
+job ID: 48321
+node: cuda8
+number of CPUs: 24
+scratch directory: /local/scratch/mehlhorn/48321
