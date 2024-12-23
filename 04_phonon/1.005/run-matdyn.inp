@@ -1,0 +1,9 @@
+&input
+  flfrc = 'fc'
+  asr = 'crystal'
+  dos = .true.
+  nk1 = 20
+  nk2 = 20
+  nk3 = 20
+/
+

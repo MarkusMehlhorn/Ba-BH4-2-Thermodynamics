@@ -1,0 +1,15 @@
+&input
+  flfrc = 'fc'
+  asr = 'crystal'
+  dos = .true.
+  fldos = 'matdyn2.dos'
+  flfrq = 'matdyn2.freq'
+  nk1 = 10
+  nk2 = 10
+  nk3 = 10
+  deltaE = 0.1
+  amass(1) = 10.811 
+  amass(2) = 137.327
+  amass(3) = 1.00794
+/
+

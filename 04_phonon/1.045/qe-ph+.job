@@ -1,0 +1,68 @@
+#!/bin/bash
+
+#SBATCH -J dos1.045
+#SBATCH --get-user-env
+#SBATCH --nodes=1
+#SBATCH --exclusive
+#SBATCH --partition=chromium
+#SBATCH --mail-type=end
+#SBATCH --export=ALL
+#SBATCH --time=672:00:00
+
+CORES=1
+
+
+# check at which node we did really end up
+node=$(hostname)
+
+if [[ $node == "calcium"* ]]; then  CORES=20;  fi
+if [[ $node == "sulfur"* ]]; then  CORES=16;  fi
+if [[ $node == "magnesium"* ]]; then  CORES=12;  fi
+if [[ $node == "chrom"* ]]; then  CORES=24;  fi
+if [[ $node == "cuda"* ]]; then  CORES=24;  fi
+if [[ $node == "gadolinium"* ]]; then  CORES=64;  fi
+
+# test if /local/scratch/$USER exists, create it if not
+[[ -d /local/scratch/$USER ]] || mkdir /local/scratch/$USER
+# create the scratch directory
+mkdir /local/scratch/$USER/$SLURM_JOB_ID
+SCRDIR=/local/scratch/$USER/$SLURM_JOB_ID
+
+# print job-specific information
+echo "submit directory: $SLURM_SUBMIT_DIR" > JOBLOG
+echo "job ID: $SLURM_JOB_ID" >> JOBLOG
+echo "node: $node" >> JOBLOG
+echo "number of CPUs: $CORES" >> JOBLOG
+echo "scratch directory: $SCRDIR" >> JOBLOG
+
+# copy from submit directory to scratch
+cp -p -r $SLURM_SUBMIT_DIR/* $SCRDIR/
+# go to scratch
+cd $SCRDIR
+
+# link QE paths
+
+export PATH=/home/mehlhorn/qe-7.3.1/PW/src/:$PATH
+export LD_LIBRARY_PATH=/home/mehlhorn/qe-7.3.1/PW/src/:$LD_LIBRARY_PATH
+
+# execute job
+
+pw=/home/mehlhorn/qe-7.3.1/PW/src/pw.x
+ph=/home/mehlhorn/qe-7.3.1/PHonon/PH/ph.x
+q2r=/home/mehlhorn/qe-7.3.1/bin/q2r.x
+matdyn=/home/mehlhorn/qe-7.3.1/bin/matdyn.x
+
+mpirun -np $CORES $pw < run-pw.inp  1> qe-pw.out 2> qe-pw_error.out
+mpirun -np $CORES $ph < run-ph.inp  1> qe-ph.out 2> qe-ph_error.out
+mpirun -np $CORES $q2r < run-q2r.inp  1> qe-q2r.out 2> qe-q2r_error.out
+mpirun -np $CORES $matdyn < run-matdyn.inp  1> qe-matdyn.out 2> qe-matdyn_error.out
+
+# copy from scratch directory to submit directory
+cp -p -r $SCRDIR/* $SLURM_SUBMIT_DIR/
+# go to submit directory
+cd $SLURM_SUBMIT_DIR
+# remove scratch directory
+rm -rf $SCRDIR
+
+
+exit
