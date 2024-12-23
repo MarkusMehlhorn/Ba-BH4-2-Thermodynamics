@@ -1,2 +1,2 @@
 Quantum chemical calculation data concerning the paper: ...
-Some files, especially the wavefunctions, are not pubished here in order to save memory and because some of them exceded the GitHub-Limit for file size.
+Some files, especially the wavefunctions, are not pubished here in order to save memory and because some of them exceded the GitHub-limit for file size.
