@@ -1,0 +1,5 @@
+submit directory: /home/mehlhorn/Ba(BH4)2/convergence/ecut/70.0
+job ID: 48249
+node: cuda6
+number of CPUs: 24
+scratch directory: /local/scratch/mehlhorn/48249
